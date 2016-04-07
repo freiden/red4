@@ -36,6 +36,12 @@ defmodule Physics.Rocketry do
       |> to_nearest_tenth
   end
 
+  def orbital_term(height) do
+    4 * (:math.pi |> squared) * (orbital_radius(height) |> cubed) / (newtons_gravitational_constant * earth.mass)
+      |> square_root
+      |> seconds_to_hours
+  end
+
   defp orbital_radius(height) do
     earth.radius + (height |> to_m)
   end
